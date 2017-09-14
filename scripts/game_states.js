@@ -38,18 +38,43 @@ Game_State.logic = function() {
     if ((GRAV_timer.end) && (LOCK_DELAY_ON == false)) {
       cur_Tetro.y += 1
     }
-    if (Key.state[32] == "pressed") {
+    if (Key.state[38] == "pressed") {
       {
         LOCK_DELAY_ON = true;
         LOCK_timer.reset(true);
         cur_Tetro.y = ghostTetro.y
+        CommitTetro();
       }
     }
-    if (Key.state[38] == "pressed") {
+    if (Key.state[65] == "pressed") {
+      RotateTetro(3);
+      DAS_timer.reset(true)
+    }
+	if (Key.state[68] == "pressed") {
+      RotateTetro(2);
+      DAS_timer.reset(true)
+    }
+    if (Key.state[83] == "pressed") {
       RotateTetro(1);
       DAS_timer.reset(true)
     }
-    if ((Key.state[38] == "down") && (DAS_timer.end)) {
+    if ((Key.state[65] == "down") && (DAS_timer.end)) {
+      if (ASS_timer.run == false) {
+        ASS_timer.reset(true)
+      }
+      if (ASS_timer.time == 0) {
+        RotateTetro(3)
+      }
+    }
+    if ((Key.state[68] == "down") && (DAS_timer.end)) {
+      if (ASS_timer.run == false) {
+        ASS_timer.reset(true)
+      }
+      if (ASS_timer.time == 0) {
+        RotateTetro(2)
+      }
+    }
+    if ((Key.state[83] == "down") && (DAS_timer.end)) {
       if (ASS_timer.run == false) {
         ASS_timer.reset(true)
       }

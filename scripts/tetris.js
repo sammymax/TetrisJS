@@ -1,7 +1,7 @@
 
 
 var ASS_time = 2,
-  DAS_time = 15,
+  DAS_time = 10,
   GRAV_time = 48,
   DROP_time = 2,
   LOCK_time = 25,
@@ -64,13 +64,7 @@ function tetromino(shape_index, color) {
   this.ori = 0
   this.color = color
   this.rotate = function(tetro_dir) {
-    this.ori += tetro_dir
-    if (this.ori > 3) {
-      this.ori = 0
-    }
-    if (this.ori < 0) {
-      this.ori = 3
-    }
+    this.ori = (this.ori + 4 + tetro_dir) % 4;
   }
 }
 
